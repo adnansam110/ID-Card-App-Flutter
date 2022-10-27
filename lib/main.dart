@@ -4,8 +4,17 @@ void main() {
   runApp(MaterialApp(home: Home()));
 }
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  // Set your states here
+  int ninjaLevel = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +57,7 @@ class Home extends StatelessWidget {
           ),
           SizedBox(height: 10.0),
           Text(
-            "20",
+            "$ninjaLevel",
             style: TextStyle(
                 color: Colors.amberAccent,
                 letterSpacing: 2.0,
@@ -69,6 +78,15 @@ class Home extends StatelessWidget {
             ],
           ),
         ]),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            ninjaLevel += 1;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[800],
       ),
     );
   }
